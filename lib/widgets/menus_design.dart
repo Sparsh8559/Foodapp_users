@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:users_app/models/selers.dart';
-class InfoDesign extends StatefulWidget {
-  Sellers? model;
+import 'package:users_app/mainScreens/items_scree.dart';
+import 'package:users_app/models/menus.dart';
+
+class MenusDesign extends StatefulWidget {
+  Menus? model;
   BuildContext? context;
 
-  InfoDesign({this.model, this.context});
+  MenusDesign({this.model, this.context});
 
 
   @override
-  State<InfoDesign> createState() => _InfoDesignState();
+  State<MenusDesign> createState() => _MenusDesignState();
 }
 
-class _InfoDesignState extends State<InfoDesign> {
+class _MenusDesignState extends State<MenusDesign> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: ()
+      {
+        Navigator.push(context, MaterialPageRoute(builder: (c)=>ItemsScreen(model: widget.model)));
+      },
       splashColor: Colors.amber,
       child: Padding(
-        padding: EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(5.0),
         child: Container(
           height: 265,
           width: MediaQuery.of(context).size.width,
@@ -29,17 +35,24 @@ class _InfoDesignState extends State<InfoDesign> {
                 color: Colors.grey[300],
               ),
               Image.network(
-                  widget.model!.sellerAvatarURL!,
+                widget.model!.thumbnailUrl!,
                 height: 220,
                 fit: BoxFit.cover,
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Text(
-                widget.model!.sellerName!,
-                style: TextStyle(
+                widget.model!.menuTitle!,
+                style: const TextStyle(
                   color: Colors.black,
                   fontFamily: "Train",
                   fontSize: 20,
+                ),
+              ),
+              Text(
+                widget.model!.menuInfo!,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
                 ),
               ),
               Divider(

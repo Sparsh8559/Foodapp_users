@@ -1,15 +1,11 @@
-import 'dart:html';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:users_app/models/selers.dart';
-import 'package:users_app/widgets/info_design.dart';
+import 'package:users_app/widgets/sellers_design.dart';
 import 'package:users_app/widgets/mydrawer.dart';
 import 'package:users_app/widgets/progressbar.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import '../Auth/authpage.dart';
-import '../global/global.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -40,10 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
             ),
           ),
-        title: Text(
-          sharedPreferences!.getString("name")!,
-        ),
         centerTitle: true,
+        title: const Text(
+          "SgBytez",style: TextStyle(fontSize: 45,fontFamily: "Signatra"),
+        ),
       ),
       drawer: MyDrawer(),
       body: CustomScrollView(
@@ -105,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Sellers smodel=Sellers.fromJson(
                   snapshot.data!.docs[index].data()! as Map<String, dynamic>
                 );
-                return InfoDesign(
+                return SellersDesign(
                   model: smodel,
                   context: context,
                 );

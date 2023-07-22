@@ -1,14 +1,10 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as fStorage;
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../global/global.dart';
 import '../mainScreens/home_screen.dart';
 import '../widgets/errordialog.dart';
@@ -119,6 +115,7 @@ class _RegisterState extends State<Register> {
       "name":namecontroller.text.trim(),
       "photoURL": sellerImageUrl,
       "status": "approve",
+      "userCart": ['garbageValue']
     });
 
 
@@ -128,6 +125,7 @@ class _RegisterState extends State<Register> {
     await sharedPreferences!.setString("email", currentUser.email.toString());
     await sharedPreferences!.setString("name", namecontroller.text.trim());
     await sharedPreferences!.setString("photoUrl",sellerImageUrl);
+    await sharedPreferences!.setStringList("userCart",['garbageValue'] );
 
  }
 
